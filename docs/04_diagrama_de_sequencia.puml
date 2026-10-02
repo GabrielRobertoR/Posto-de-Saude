@@ -1,0 +1,24 @@
+@startuml
+actor "Funcionario da UBS" as Funcionario
+participant "Aplicativo do Postinho" as App
+participant "Sistema Externo de Saude" as Externo
+database "Banco de Dados" as Banco
+participant "Servico de Notificacoes" as Notificacao
+
+Funcionario -> App : Solicitar atualizacao de medicamentos
+App -> Externo : Solicitar dados de disponibilidade
+Externo --> App : Retornar dados dos medicamentos
+
+alt Dados recebidos com sucesso
+  App -> App : Validar os dados recebidos
+  App -> Banco : Atualizar estoque e data da consulta
+  Banco --> App : Confirmar atualizacao
+  App -> Notificacao : Solicitar envio de aviso
+  Notificacao --> App : Retornar resultado do envio
+  App --> Funcionario : Exibir confirmacao da atualizacao
+else Falha na consulta externa
+  Externo --> App : Retornar erro ou indisponibilidade
+  App --> Funcionario : Informar falha na atualizacao
+end
+
+@enduml
