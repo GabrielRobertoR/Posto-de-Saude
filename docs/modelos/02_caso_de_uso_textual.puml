@@ -1,0 +1,45 @@
+@startuml
+title Caso de uso: Consultar disponibilidade de medicamentos
+
+note as CasoDeUso
+Ator principal:
+- Morador/Paciente
+
+Objetivo:
+Consultar se um medicamento esta disponivel na UBS.
+
+Pre-condicoes:
+- O aplicativo esta acessivel.
+- O usuario possui acesso a tela de consulta.
+- A unidade possui informacoes cadastradas sobre medicamentos.
+
+Fluxo principal:
+1. O morador abre o aplicativo.
+2. O sistema apresenta a tela inicial.
+3. O morador seleciona "Medicamentos".
+4. O sistema apresenta os medicamentos cadastrados na unidade.
+5. O morador pesquisa pelo nome do medicamento.
+6. O sistema consulta as informacoes de disponibilidade mais recentes registradas.
+7. O sistema informa se o medicamento esta disponivel, indisponivel ou se a informacao esta desatualizada.
+8. O morador visualiza o resultado e decide se precisa entrar em contato com a unidade.
+
+Fluxos alternativos:
+A1. Medicamento nao encontrado:
+    O sistema informa que nao ha cadastro correspondente.
+A2. Medicamento indisponivel:
+    O sistema informa que o medicamento esta indisponivel.
+A3. Informacao desatualizada:
+    O sistema recomenda confirmar a disponibilidade com a unidade.
+A4. Falha de conexao:
+    O sistema informa que nao foi possivel consultar os dados.
+
+Pos-condicoes:
+- O morador recebe uma resposta sobre a disponibilidade registrada.
+- A consulta nao altera o estoque nem reserva o medicamento.
+
+Regras de negocio:
+- Somente funcionarios autorizados podem atualizar o estoque.
+- A disponibilidade deve refletir os registros mais recentes da unidade.
+- O aplicativo nao garante a retirada apenas porque o medicamento aparece como disponivel.
+end note
+@enduml
